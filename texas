@@ -1,0 +1,47 @@
+def texas_capital_quiz(t):
+    # Darryl Langeness
+    # Texas capital quiz function
+
+    correct_answers = ["austin"]
+    attempts = 3
+    capital = "AUSTIN"
+
+    t.clear()
+    t.penup()
+    t.goto(-150, 100)
+    t.write("Texas Capital Quiz", font=("Arial", 18, "bold"))
+
+    for attempt in range(1, attempts + 1):
+        answer = input("What is the capital of Texas? ").lower().strip()
+
+        if answer in correct_answers:
+            t.clear()
+            t.goto(-150, 50)
+            t.write("Correct! Austin is the capital of Texas.", font=("Arial", 14, "bold"))
+
+            # Simple turtle graphic for success
+            t.goto(-80, -40)
+            t.pendown()
+            for side in range(5):
+                t.forward(100)
+                t.right(144)
+            t.penup()
+
+            return True
+
+        elif attempt < attempts:
+            print("Incorrect. Try again.")
+
+            # Nested loop creates a letter-by-letter hint
+            hint = ""
+            for i in range(attempt):
+                for letter in capital[i]:
+                    hint += letter
+
+            print("Hint:", hint + "_" * (len(capital) - len(hint)))
+
+        else:
+            t.clear()
+            t.goto(-180, 50)
+            t.write("Incorrect. The capital of Texas is Austin.", font=("Arial", 14, "bold"))
+            return False
